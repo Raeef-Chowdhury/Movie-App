@@ -1,0 +1,54 @@
+<!-- npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
+<!DOCTYPE html>
+<html class="text-[62.5%]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-primary">
+    <header>
+      <nav class="list-none px-[1.2rem] mt-[2.4rem]">
+        <ul class="flex gap-[2.4rem] items-center justify-between">
+          <div class="nav__heading">
+            <li class="text-[4.8rem] font-semibold tracking-[0.3rem]">
+              MOVIE APP
+            </li>
+          </div>
+          <div
+            class="nav__pages flex items-center justify-between gap-[1.8rem]"
+          >
+            <li class="text-avocado-100">Home</li>
+            <li class="">TV Shows</li>
+            <li class="">Movies</li>
+            <li class="">My List</li>
+          </div>
+          <div
+            class="nav__serchbar flex items-center justify-between gap-[1.2rem]"
+          >
+            <div class="">
+              <input
+                type="text "
+                placeholder="Search by name here..."
+                class="px-[2.4rem] py-[0.8rem] shadow-sm hover:shadow-md border-r-[3.6rem] w-[100%] text-[1.6rem] border-none text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-full transition-all"
+              />
+            </div>
+            <ion-icon
+              name="search-outline"
+              class="text-[3.6rem] px-[1.2rem]"
+            ></ion-icon>
+          </div>
+        </ul>
+      </nav>
+    </header>
+  </body>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+</html>
