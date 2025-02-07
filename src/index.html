@@ -4,25 +4,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="output.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-primary">
+  <body class="bg-[#001524]">
     <header>
       <nav class="list-none px-[1.2rem] mt-[2.4rem]">
         <ul class="flex gap-[2.4rem] items-center justify-between">
           <div class="nav__heading">
-            <li class="text-[4.8rem] font-semibold tracking-[0.3rem]">
+            <li
+              class="text-[4.8rem] text-[#529018] font-semibold tracking-[0.3rem]"
+            >
               MOVIE APP
             </li>
           </div>
           <div
-            class="nav__pages flex items-center justify-between gap-[1.8rem]"
+            class="nav__pages flex items-center justify-between gap-[4.8rem] mr-[9.6rem]"
           >
-            <li class="text-avocado-100">Home</li>
-            <li class="">TV Shows</li>
-            <li class="">Movies</li>
-            <li class="">My List</li>
+            <li
+              class="text-gray-100 transition-all text-[1.8rem] hover:text-white hover:scale-[1.05] hover:transform-[translateY(-0.4rem)] hover:cursor-pointer"
+            >
+              Home
+            </li>
+            <li
+              class="text-gray-100 transition-all text-[1.8rem] hover:text-white hover:scale-[1.05] hover:transform-[translateY(-0.4rem)] hover:cursor-pointer"
+            >
+              TV Shows
+            </li>
+            <li
+              class="text-gray-100 transition-all text-[1.8rem] hover:text-white hover:scale-[1.05] hover:transform-[translateY(-0.4rem)] hover:cursor-pointer"
+            >
+              Movies
+            </li>
+            <li
+              class="text-gray-100 transition-all text-[1.8rem] hover:text-white hover:scale-[1.05] hover:transform-[translateY(-0.4rem)] hover:cursor-pointer"
+            >
+              My List
+            </li>
           </div>
           <div
             class="nav__serchbar flex items-center justify-between gap-[1.2rem]"
@@ -31,18 +49,51 @@
               <input
                 type="text "
                 placeholder="Search by name here..."
-                class="px-[2.4rem] py-[0.8rem] shadow-sm hover:shadow-md border-r-[3.6rem] w-[100%] text-[1.6rem] border-none text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-full transition-all"
+                class="search__input px-[2.4rem] py-[0.8rem] shadow-sm hover:shadow-md border-r-[3.6rem] transition-all text-[1.6rem] border-none text-gray-800 placeholder-gray-400 border border-gray-300 rounded-full bg-[#001524] w-[0] absolute top-[5%] right-[5%]"
               />
             </div>
             <ion-icon
               name="search-outline"
-              class="text-[3.6rem] px-[1.2rem]"
+              class="text-[3.6rem] px-[1.2rem] text-[#314def] searchbar"
             ></ion-icon>
           </div>
         </ul>
       </nav>
     </header>
+    <main class="main px-[4.8rem]">
+      <div class="card__list">
+        <ul class="card__list--box flex gap-[6.4rem] items-center">
+          <li
+            class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem]"
+          >
+            <img
+              src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+              alt="asds"
+              class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+            />
+            <div
+              class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+            >
+              <p
+                class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+              >
+                Avatar 3
+              </p>
+              <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                152m
+              </p>
+              <p
+                class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+              >
+                <ion-icon name="film-outline"></ion-icon>Movie
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
   </body>
+  <script src="script.js"></script>
   <script
     type="module"
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
