@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="output.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-[#001524]">
+  <body class="bg-[#001524] overflow-hidden">
     <header>
       <nav class="list-none px-[1.2rem] mt-[2.4rem]">
         <ul class="flex gap-[2.4rem] items-center justify-between">
@@ -60,160 +60,276 @@
         </ul>
       </nav>
     </header>
-    <main class="main px-[8rem]">
-      <div class="card__list mt-[9.6rem] relative">
+    <main class="main mx-[8rem]">
+      <div class="card__list mt-[9.6rem] relative max-w-[90vw] overflow-hidden">
         <h1
           class="card__item--heading mb-[2.4rem] text-[#529018] text-[4.8rem] uppercase font-semibold border-[#314def] border-b-8"
         >
           Trending
         </h1>
-        <ul class="card__list--box flex gap-[6.4rem] relative">
-          <li
-            class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 relative"
-          >
-            <div
-              class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+        <ul class="card__list--box flex gap-[6.4rem] w-full h-[40rem]">
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <ion-icon
-                name="star-outline"
-                class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
-              ></ion-icon>
-            </div>
-            <img
-              src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
-              alt="asds"
-              class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
-            />
-            <div
-              class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+              >
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              >
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <p
-                class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
               >
-                Avatar 3
-              </p>
-              <p class="text-[1.8rem] text-gray-400 card__item--duration">
-                152m
-              </p>
-              <p
-                class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
               >
-                <ion-icon name="film-outline"></ion-icon>Movie
-              </p>
-            </div>
-          </li>
-          <li
-            class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 relative"
-          >
-            <div
-              class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <ion-icon
-                name="star-outline"
-                class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
-              ></ion-icon>
-            </div>
-            <img
-              src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
-              alt="asds"
-              class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
-            />
-            <div
-              class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+              >
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              >
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <p
-                class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
               >
-                Avatar 3
-              </p>
-              <p class="text-[1.8rem] text-gray-400 card__item--duration">
-                152m
-              </p>
-              <p
-                class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
               >
-                <ion-icon name="film-outline"></ion-icon>Movie
-              </p>
-            </div>
-          </li>
-          <li
-            class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 relative"
-          >
-            <div
-              class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <ion-icon
-                name="star-outline"
-                class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
-              ></ion-icon>
-            </div>
-            <img
-              src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
-              alt="asds"
-              class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
-            />
-            <div
-              class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+              >
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
+              >
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <p
-                class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
               >
-                Avatar 3
-              </p>
-              <p class="text-[1.8rem] text-gray-400 card__item--duration">
-                152m
-              </p>
-              <p
-                class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
               >
-                <ion-icon name="film-outline"></ion-icon>Movie
-              </p>
-            </div>
-          </li>
-          <li
-            class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 relative"
-          >
-            <div
-              class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
+          <div class="card-wrapper">
+            <li
+              class="card__list--item max-w-[27rem] border-white border-[1px] rounded-[1.2rem] transition-all hover:scale-105 absolute"
             >
-              <ion-icon
-                name="star-outline"
-                class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
-              ></ion-icon>
-            </div>
-            <img
-              src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
-              alt="asds"
-              class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
-            />
-            <div
-              class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
-            >
-              <p
-                class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+              <div
+                class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white"
               >
-                Avatar 3
-              </p>
-              <p class="text-[1.8rem] text-gray-400 card__item--duration">
-                152m
-              </p>
-              <p
-                class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                <ion-icon
+                  name="star-outline"
+                  class="bookmark__icon text-white text-[4.8rem] group-hover:text-[#314def]"
+                ></ion-icon>
+              </div>
+              <img
+                src="/Mother+Son final/Images/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"
+                alt="Movie Poster"
+                class="max-w-[100%] overflow-hidden rounded-[1.2rem]"
+              />
+              <div
+                class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
               >
-                <ion-icon name="film-outline"></ion-icon>Movie
-              </p>
-            </div>
-          </li>
+                <p
+                  class="text-[2.4rem] text-white uppercase card__item--headng mt-[1rem]"
+                >
+                  Avatar 3
+                </p>
+                <p class="text-[1.8rem] text-gray-400 card__item--duration">
+                  152m
+                </p>
+                <p
+                  class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
+                >
+                  <ion-icon name="film-outline"></ion-icon>Movie
+                </p>
+              </div>
+            </li>
+          </div>
         </ul>
       </div>
       <div class="arrows__box">
         <ion-icon
           name="chevron-back-outline"
-          class="text-[8rem] text-white absolute top-[60%] left-[-1%]"
+          class="text-[8rem] text-white absolute top-[60%] left-[-1%] arrow__right"
         ></ion-icon
         ><ion-icon
           name="chevron-forward-outline"
-          class="text-[8rem] text-white absolute top-[60%] left-[93%]"
+          class="text-[8rem] text-white absolute top-[60%] left-[95%] arrow__left"
         ></ion-icon>
       </div>
     </main>

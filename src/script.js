@@ -22,3 +22,35 @@ searchbar.addEventListener("click", function () {
   input.classList.toggle("w-0");
   input.classList.toggle("bg-white");
 });
+////////////////////////////////////////
+// Slide
+
+const slides = document.querySelectorAll(".card__list--item");
+const slideshow = document.querySelector(".card__list--box");
+const arrowRight = document.querySelector(".arrow__right");
+const arrowLeft = document.querySelector(".arrow__left");
+
+let curSlide = 0;
+const maxSlide = slides.length;
+
+const goToSlide = (slideIndex) => {
+  slides.forEach((slide, index) => {
+    console.log(slide, index);
+    slide.style.transform = `translateX(${100 * (index - slideIndex)}%)`;
+  });
+};
+
+goToSlide(curSlide);
+
+const prevSlide = () => {
+  curSlide = curSlide === 0 ? maxSlide - 1 : curSlide - 1;
+  goToSlide(curSlide);
+};
+
+const nextSlide = () => {
+  curSlide = curSlide === maxSlide - 1 ? 0 : curSlide + 1;
+  goToSlide(curSlide);
+};
+
+arrowLeft.addEventListener("click", nextSlide);
+arrowRight.addEventListener("click", prevSlide);
