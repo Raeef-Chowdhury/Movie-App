@@ -35,13 +35,12 @@ function addBookmarks() {
 //     });
 //   });
 // }
-function updateBookmarks(iconBox) {
+function updateBookmarks() {
   document.body.addEventListener("click", function (event) {
     if (event.target.closest(".card__item--icon")) {
       const curIcon = event.target
         .closest(".card__item--icon")
         .querySelector(".bookmark__icon");
-      console.log(curIcon);
 
       if (curIcon.getAttribute("name") === "star-outline") {
         curIcon.setAttribute("name", "star");
@@ -63,24 +62,32 @@ const updateSlides = () => {
 
   const goToSlide = (slideIndex) => {
     slides.forEach((slide, index) => {
-      slide.style.transform = `translateX(${100 * (index - slideIndex)}%)`;
+      slide.style.transform = `translateX(${115 * (index - slideIndex)}%)`;
     });
   };
 
   goToSlide(curSlide);
 
   const prevSlide = () => {
-    curSlide = curSlide === 0 ? maxSlide - 1 : curSlide - 1;
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
     goToSlide(curSlide);
   };
 
   const nextSlide = () => {
-    curSlide = curSlide === maxSlide + 1 ? 0 : curSlide + 1;
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
     goToSlide(curSlide);
   };
 
-  arrowLeft.addEventListener("click", nextSlide);
-  arrowRight.addEventListener("click", prevSlide);
+  arrowLeft.addEventListener("click", prevSlide);
+  arrowRight.addEventListener("click", nextSlide);
 };
 updateSlides();
 ////////////////////////////////////////////////////////////////////////////////////
@@ -107,12 +114,27 @@ async function fetchMovies() {
     console.error("Error fetching movies:", error);
   }
 }
+async function getMovieDetails(movieId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const movieDetails = await response.json();
+    return movieDetails.runtime; // Returns runtime in minutes
+  } catch (error) {
+    console.error(`Error fetching movie details for ID ${movieId}:`, error);
+    return "N/A"; // Fallback if request fails
+  }
+}
+
 async function renderData(movie, id, index) {
   const movieListContainer = document.querySelector(".card__list--box");
   const headingTitle = document.querySelector(".card__item--heading");
   headingTitle.textContent = `${ENDPOINT.split("/").pop().split("-").pop()}`;
 
-  // Create a new list item element for the movie
   const movieItem = document.createElement("div");
   movieItem.classList.add("card-wrapper");
 
@@ -124,15 +146,16 @@ async function renderData(movie, id, index) {
     "border-[2px]",
     "rounded-[1.2rem]",
     "transition-all",
-    "hover:scale-y-105",
-    "hover:scale-x-105",
+    "hover:-translate-y-4",
     "absolute",
     "max-h-[60rem]",
     "shadow-[0.8rem_0.8rem_1.6rem_rgba(255,255,255,0.1)]"
   );
 
+  // Fetch runtime asynchronously
+  const runtime = await getMovieDetails(id);
+
   movieCard.innerHTML = `
-            
               <div
                 class="card__item--icon group absolute left-[3%] top-[3%] rounded-full bg-[#314def] p-[0.2rem] transition-all hover:bg-white shadow-2xl"
               >
@@ -148,7 +171,7 @@ async function renderData(movie, id, index) {
                     : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                 }"
                 alt="${movie.title}"
-                class="w-[20rem] h-[36rem] overflow-hidden rounded-[1.2rem] object-cover"
+                class="w-[36rem] h-[20rem] overflow-hidden rounded-[1.2rem] object-cover"
               />
               <div
                 class="card__item--info flex flex-col items-center gap-[0.6rem] pb-[1.2rem]"
@@ -159,7 +182,7 @@ async function renderData(movie, id, index) {
                   ${movie.title}
                 </p>
                 <p class="text-[1.8rem] text-gray-400 card__item--duration">
-               ${movie.runtime}m
+               ${runtime}m
                 </p>
                 <p
                   class="text-[1.8rem] text-gray-300 card__item--category flex items-center justify-center gap-[0.4rem] px-[0.8rem] py-[0.4rem] border-gray-700 border-[1px] rounded-[1.2rem] w-fit"
@@ -169,10 +192,12 @@ async function renderData(movie, id, index) {
               </div>
           `;
 
-  // Add the movie card to the list container
   movieListContainer.appendChild(movieItem);
   movieItem.appendChild(movieCard);
   updateSlides();
+  movieItem.addEventListener("click", function () {
+    console.log(`cicked[${index}]`);
+  });
 }
 fetchMovies();
 updateBookmarks();
