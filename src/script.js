@@ -109,7 +109,6 @@ async function getMovieDetails(movieId) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const movieDetails = await response.json();
-    console.log(movieDetails);
 
     return movieDetails;
   } catch (error) {
@@ -117,7 +116,22 @@ async function getMovieDetails(movieId) {
     return "N/A"; // Fallback if request fails
   }
 }
+async function getMovieCast(movieId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const movieCast = await response.json();
 
+    return movieCast;
+  } catch (error) {
+    console.error(`Error fetching movie details for ID ${movieId}:`, error);
+    return "N/A"; // Fallback if request fails
+  }
+}
 async function renderData(movie, id, index) {
   const movieListContainer = document.querySelectorAll(".card__list--box");
   const headingTitle = document.querySelector(".card__item--heading");
@@ -141,6 +155,7 @@ async function renderData(movie, id, index) {
   );
   // Fetch runtime asynchronously
   const movieDetails = await getMovieDetails(id);
+  const moviecast = await getMovieCast(id);
 
   movieCard.innerHTML = `
               <div
@@ -183,13 +198,15 @@ async function renderData(movie, id, index) {
   );
   movieItem.appendChild(movieCard);
   updateSlides();
-  movieItem.addEventListener("click", () => updateModal(movieDetails));
+  movieItem.addEventListener("click", () =>
+    updateModal(movieDetails, moviecast)
+  );
 }
 fetchMovies();
 updateBookmarks();
 ///////////////////////////////////////////////////////////////////////////////
 // MODAL
-function updateModal(movieDetails) {
+function updateModal(movieDetails, movieCast) {
   const modal = document.querySelector(".modal");
   const overlay = document.querySelector(".overlay");
   modal.classList.remove("hidden");
@@ -225,8 +242,13 @@ function updateModal(movieDetails) {
   const movieRating = movieDetails.vote_average * 10;
   const releaseDate = new Date(movieDetails.release_date);
   const formattedReleaseDate = formatReleaseDate(releaseDate);
-
-  console.log(movieDetails);
+  const crewList = movieCast.crew
+    .slice(0, 10)
+    .filter(
+      (crew) =>
+        crew.known_for_department === "Directing" ||
+        crew.known_for_department === "Production"
+    );
 
   modal.innerHTML = `<div class="thumbnail flex gap-[2.4rem] m-[4rem]">
 <div class="img__box">
@@ -308,82 +330,61 @@ name="close-outline"
 class="modal__exit--btn text-[6rem] text-[#001524] transition-all hover:text-red-900"
 ></ion-icon>
 </div>
+
+<div class="crewCast__box flex text-center justify-center items-start gap-[6.4rem] mx-[1.2rem]">
 <div
-class="crew__box mt-[4.8rem] flex flex-col items-center justify-center"
+  class="cast__box mt-[4.8rem] flex flex-col items-center justify-start text-center"
 >
-<h1
-class="crew__box--heading text-[2.4rem] underline font-semibold uppercase"
+  <h1
+    class="cast__box--heading text-[2.4rem] underline font-semibold uppercase "
+  >
+    Cast
+  </h1>
+  <ul class="cast__box--list mt-[1.2rem] flex flex-col gap-[1.2rem] text-center">
+   ${movieCast.cast
+     .slice(0, 10)
+     .map(
+       (
+         cast
+       ) => ` <li class="cast__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center">
+      <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
+        >${cast.name}</span
+      >
+      as
+      <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
+        >${cast.character}</span
+      >
+    </li>`
+     )
+     .join("")}
+  </ul>
+</div>
+<div
+  class="crew__box mt-[4.8rem] flex flex-col items-center justify-center"
 >
-Crew & Cast
-</h1>
-<ul class="crew__box--list mt-[1.2rem] flex flex-col gap-[1.2rem]">
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
+  <h1
+    class="crew__box--heading text-[2.4rem] underline font-semibold uppercase"
   >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
-  >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
-  >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
-  >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
-  >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-<li
-  class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
->
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Leonardo Dicaprico</span
-  >
-  as
-  <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
-    >Dom Cobb</span
-  >
-</li>
-</ul>
+    Crew
+  </h1>
+  <ul class="crew__box--list mt-[1.2rem] flex flex-col gap-[1.2rem]">
+    ${crewList
+      .map(
+        (crew) => `<li
+      class="crew__list--item text-gray-200 text-[1.2rem] flex gap-[0.8rem] items-center"
+    >
+      <span class="text-[1.6rem] uppercase font-semibold text-[#001524]"
+        >${crew.name}:</span
+      >
+     
+      <span class="text-[1.6rem] uppercase font-semibold "
+        >${crew.known_for_department}</span
+      >
+    </li>`
+      )
+      .join("")}
+  </ul>
+</div>
 </div>`;
   const deleteModal = document.querySelector(".modal__exit--btn");
   overlay.addEventListener("click", function () {
