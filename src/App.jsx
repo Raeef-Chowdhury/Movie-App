@@ -1,8 +1,8 @@
 import "./App.css";
-import "./Components/Header";
-import "./Components/Search";
 import Header from "./Components/Header";
 import Search from "./Components/Search";
+import MovieCard from "./Components/Moviecard";
+
 import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 // API ENDPOINT = https://api.themoviedb.org/3/search/movie
@@ -22,7 +22,7 @@ function App() {
   };
   const fetchMovies = async () => {
     try {
-      const endpoint = `${API_URL}/discover/movie?sort_by=populairty,desc`;
+      const endpoint = `${API_URL}/discover/movie?sort_by=populairty.desc`;
       const response = await fetch(endpoint, API_OPTIONS);
       if (!response.ok) {
         throw new Error("cant fetch movies");
@@ -48,18 +48,17 @@ function App() {
     <>
       <main className="flex justify-center items-start ">
         <div className="pattern" />
-        <div className="wrapper flex justify-center mt-[4rem]">
+        <div className="wrapper  flex flex-col justify-center items-center gap-[4rem] mt-[4rem]">
           <Header />
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <section className="movies__list">
             {isLoading ? (
               <p className="text-white">Loading..</p>
             ) : (
-              <ul>
+              <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem]  justify-items-center mt-[4.8rem] movielist">
                 {movieList.map((movie) => (
-                  <li key={movie.id} className="text-white">
-                    {movie.title}
-                  </li>
+                  // eslint-disable-next-line react/jsx-key
+                  <MovieCard id={movie.id} movie={movie} />
                 ))}
               </ul>
             )}

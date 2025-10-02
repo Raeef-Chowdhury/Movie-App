@@ -32,7 +32,7 @@
   margin-top: 4.8rem;
 }
 .img__box {
-  margin-top: 2.4rem;
+  padding: 1.6rem;
 }
 .movie-span {
   margin-right: 1.2rem;
@@ -42,7 +42,17 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-
+.movielist {
+  margin-top: 6rem;
+  justify-items: center;
+  align-items: center;
+}
+.moviecard-text {
+  padding: 0 1.2rem;
+}
+.movie__info--box {
+  padding: 0 1.2rem;
+}
 .card {
   padding: 2em;
 }

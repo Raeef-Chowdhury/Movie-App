@@ -2,7 +2,7 @@
 function Search({ searchTerm, setSearchTerm }) {
   return (
     <>
-      <div className="searchbar-container w-full  bg-light-100/5 px-[6rem]  py-[6rem] scale-110 rounded-lg mx-auto mt-6 ">
+      <div className="searchbar-container max-w-7xl w-full  bg-light-100/5 px-[6rem]  py-[6rem] scale-110 rounded-lg mx-auto mt-6 ">
         <div className="flex items-center gap-[1.2rem] searchbar-box">
           <img
             src="../../public/Search.png"

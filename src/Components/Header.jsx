@@ -1,7 +1,7 @@
 function Header() {
   return (
     <>
-      <header className="mt-[4rem]">
+      <header className="mt-[4rem] max-w-7xl">
         <div className="img__box flex flex-col gap-[3.6rem] items-center justify-center ">
           <img src="logo.png" alt="logo img" className="w-[10%] " />
           <img src="hero-img.png" alt="hero__img" className="scale-125" />
