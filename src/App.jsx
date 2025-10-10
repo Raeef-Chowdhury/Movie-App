@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./Components/Header";
 import Search from "./Components/Search";
-import MovieCard from "./Components/Moviecard";
+import MovieCard from "./Components/MovieCard";
 import { useDebounce } from "react-use";
 
 import { useState, useEffect } from "react";

@@ -27,7 +27,7 @@ function MovieCard({ movie, id }) {
 
   return (
     <>
-      <div className="movie--card__container truncate transition-all hover:scale-110 hover:cursor-pointer hover:shadow-[0px_3px_6px_6px_rgba(255,255,255,0.1)] p-5 bg-dark-100  w-[30rem] h-[28.2rem] max-w-[140rem] flex flex-col items-start justify-start rounded-2xl">
+      <div className="movie--card__container truncate transition-all hover:scale-110 hover:cursor-pointer hover:shadow-[0px_3px_6px_6px_rgba(255,255,255,0.1)] p-5 bg-dark-100  w-[30rem] h-[50rem] max-w-[60rem] flex flex-col items-start justify-start rounded-2xl">
         <div className="img__box flex items-start  ">
           <img
             src={
@@ -36,7 +36,7 @@ function MovieCard({ movie, id }) {
                 : "https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ripon/OneDrive/Desktop/Raeef%27s%20Coding/movie-app-tutorial/public/no-Poster.png?version%3D1759382850466"
             }
             alt={movie.title}
-            className="w-[26.4rem] h-[17rem] object-cover  rounded-lg text-white text-xl"
+            className="w-[26.4rem] h-[40rem] object-cover  rounded-lg text-white text-xl"
           />
         </div>
         <div className="flex gap-[1.2rem] flex-col ">
