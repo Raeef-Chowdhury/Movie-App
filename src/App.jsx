@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Search from "./Components/Search";
 import MovieCard from "./Components/MovieCard";
+import MovieDetails from "./Components/MovieDetails";
 import { useDebounce } from "react-use";
 
 import { useState, useEffect } from "react";
@@ -12,12 +13,14 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [debouncedSearch, setDebouncedSearch] = useState("");
   useDebounce(
     () => {
       setDebouncedSearch(searchTerm);
     },
-    500, // delay (ms)
+    500, // delay (ms)dw
     [searchTerm] // dependencies
   );
   const API_URL = "https://api.themoviedb.org/3";
@@ -28,6 +31,12 @@ function App() {
       accept: "application/json",
       Authorization: `Bearer ${API_KEY}`,
     },
+  };
+  const handleMovieSelect = (movie) => {
+    setSelectedMovie(movie);
+  };
+  const handleCloseModal = () => {
+    setSelectedMovie(null);
   };
   const fetchMovies = async (query) => {
     try {
@@ -63,15 +72,24 @@ function App() {
           <Header />
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <section className="movies__list">
-            {isLoading ? (
-              <p className="text-white">Loading..</p>
+            {selectedMovie ? (
+              <MovieDetails movie={selectedMovie} onClose={handleCloseModal} />
             ) : (
-              <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem] max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1  justify-items-center mt-[4.8rem] movielist">
-                {movieList.map((movie) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <MovieCard id={movie.id} movie={movie} />
-                ))}
-              </ul>
+              <>
+                {isLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem] max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1  justify-items-center mt-[4.8rem] movielist">
+                    {movieList.map((movie) => (
+                      <MovieCard
+                        key={movie.id}
+                        movie={movie}
+                        onClick={() => handleMovieSelect(movie)}
+                      />
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
           </section>
         </div>

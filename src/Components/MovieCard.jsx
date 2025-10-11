@@ -20,14 +20,18 @@ const genres = {
   10752: "War",
   37: "Western",
 };
-function MovieCard({ movie, id }) {
-  console.log(id);
+function MovieCard({ movie, key, onClick }) {
+  console.log(key);
   console.log(movie);
+
   const charCount = movie.title.length;
 
   return (
     <>
-      <div className="movie--card__container truncate transition-all hover:scale-110 hover:cursor-pointer hover:shadow-[0px_3px_6px_6px_rgba(255,255,255,0.1)] p-5 bg-dark-100  w-[30rem] h-[50rem] max-w-[60rem] flex flex-col items-start justify-start rounded-2xl">
+      <div
+        onClick={onClick}
+        className="movie--card__container truncate transition-all hover:scale-110 hover:cursor-pointer hover:shadow-[0px_3px_6px_6px_rgba(255,255,255,0.1)] p-5 bg-dark-100  w-[30rem] h-[50rem] max-w-[60rem] flex flex-col items-start justify-start rounded-2xl"
+      >
         <div className="img__box flex items-start  ">
           <img
             src={
