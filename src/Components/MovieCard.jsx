@@ -20,10 +20,7 @@ const genres = {
   10752: "War",
   37: "Western",
 };
-function MovieCard({ movie, key, onClick }) {
-  console.log(key);
-  console.log(movie);
-
+function MovieCard({ movie, onClick }) {
   const charCount = movie.title.length;
 
   return (

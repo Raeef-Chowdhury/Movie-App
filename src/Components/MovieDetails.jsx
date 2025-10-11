@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 function MovieDetails({ movie, onClose }) {
+  console.log(movie);
+
   return (
     <div>
       <button className="text-white" onClick={onClose}>

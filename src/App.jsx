@@ -32,8 +32,19 @@ function App() {
       Authorization: `Bearer ${API_KEY}`,
     },
   };
-  const handleMovieSelect = (movie) => {
-    setSelectedMovie(movie);
+  const handleMovieSelect = async (movie) => {
+    const movieID = movie.id;
+
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US`
+      );
+      const data = await response.json();
+      console.log(data);
+      setSelectedMovie(data);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
   };
   const handleCloseModal = () => {
     setSelectedMovie(null);
