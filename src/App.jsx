@@ -25,6 +25,7 @@ function App() {
   );
   const API_URL = "https://api.themoviedb.org/3";
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  const API_MOVIE_KEY = import.meta.env.VITE_TMDB_API_KEY_MOVIE;
   const API_OPTIONS = {
     method: "GET",
     headers: {
@@ -37,7 +38,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_MOVIE_KEY}&language=en-US`
       );
       const data = await response.json();
       console.log(data);

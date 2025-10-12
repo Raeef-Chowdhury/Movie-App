@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
 }
@@ -34,11 +33,23 @@ body {
 .searchbar-container {
   margin-top: 4.8rem;
 }
+.movie__detail--box {
+  margin-top: 4.8rem;
+}
+.span--text {
+  text-color: #a8b5db;
+}
+.movie__rating {
+  padding: 0.6rem 3rem;
+}
 .img__box {
   padding: 1.6rem;
 }
 .movie-span {
   margin-right: 1.2rem;
+}
+.movies__list {
+  width: 100%;
 }
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
