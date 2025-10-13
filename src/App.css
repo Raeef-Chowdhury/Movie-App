@@ -36,7 +36,13 @@ body {
 .movie__detail--box {
   margin-top: 12rem;
   box-shadow: 0 0 100px rgba(171, 139, 255, 0.3);
-  padding: 3rem 6rem;
+  padding: 6rem 6rem;
+}
+
+.hmb-button {
+  padding: 0.6rem 3rem;
+  margin-top: 4.8rem;
+  transition: all 300ms;
 }
 .movie-genre {
   padding: 0.6rem 0.9rem;

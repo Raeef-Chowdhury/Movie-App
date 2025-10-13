@@ -34,10 +34,10 @@ function MovieDetails({ movie, onClose }) {
         <span className="text-[#a8b5d8] text-[1.8rem]">•</span>
         <p className="movie__lagnuage text-[#A8B5DB]">{movie.status}</p>
       </div>
-      <div className="movie__details--main flex justify-center gap-[12rem] items-center ">
-        <div className="movie__details--img ">
+      <div className="movie__details--main flex justify-center gap-[12rem] items-start ">
+        <div className="movie__details--img  ">
           <img
-            className="w-[40rem] h-[64rem]  object-cover  rounded-lg text-white text-xl"
+            className="w-[50rem] h-[70rem]  object-cover  rounded-lg text-white text-xl"
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.name}
           />
@@ -141,13 +141,13 @@ function MovieDetails({ movie, onClose }) {
                 {movie.tagline ? movie.tagline : "Not Available"}
               </span>
             </li>
-            <li className="flex gap-[6rem] items-start">
+            <li className="flex flex-wrap gap-[6rem] items-start">
               <p className="text-[#A8B5DB] text-[1.8rem]">
                 {movie.production_companies.length > 1
                   ? "Production Comapnies"
                   : "Production Company"}
               </p>
-              <span className="flex gap-[3rem] max-w-[50rem]">
+              <span className="flex flex-wrap gap-[3rem] max-w-[50rem]">
                 {movie.production_companies.map((comapny, index) => (
                   <>
                     <p className="text-[#D6C7FF] text-[1.8rem]">
@@ -164,8 +164,11 @@ function MovieDetails({ movie, onClose }) {
           </ul>
         </div>
       </div>
-      <button className="text-white" onClick={onClose}>
-        Back
+      <button
+        className="text-[#121212] hover:cursor-pointer hover:scale-110  hover:bg-[#AB8BFF] bg-[#D6C7FF] hmb-button rounded-3xl text-[2.4rem]"
+        onClick={onClose}
+      >
+        Visit Homepage
       </button>
     </div>
   );
