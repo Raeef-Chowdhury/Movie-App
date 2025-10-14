@@ -8,6 +8,10 @@ import { useDebounce } from "react-use";
 import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 // API ENDPOINT = https://api.themoviedb.org/3/search/movie
+//TODO: Add trending front screen
+//FIXME: Add error handling for everything
+//TODO: ADD ANIMATIONS
+//TODO: Refactor Movie details code
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");

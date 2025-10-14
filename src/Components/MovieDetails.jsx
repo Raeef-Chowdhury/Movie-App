@@ -1,9 +1,57 @@
 /* eslint-disable react/prop-types */
-// ERROR HANDLE DIFFERENT COUNTRIES
-//FIX MULTIPE COUNTRIES
+
 function MovieDetails({ movie, onClose }) {
   console.log(movie);
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
+  const formatMoney = (n) => {
+    if (n <= 0) return "Not Available";
+    if (n >= 1_000_000_000) return `$${(n / 1_000_000_000).toFixed(1)} billion`;
+    if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)} million`;
+    return `$${(n / 1_000).toFixed(1)} thousand`;
+  };
+  const movieDetails = [
+    {
+      label: "Overview",
+      value: movie.overview || "Not Available",
+    },
+    {
+      label: "Release Date",
+      value: formatDate(movie.release_date),
+    },
+    {
+      label: movie.production_countries.length > 1 ? "Countries" : "Country",
+      value: movie.production_countries.map((c) => c.name).join(" • "),
+    },
+    {
+      label: movie.spoken_languages.length > 1 ? "Languages" : "Language",
+      value: movie.spoken_languages.map((l) => l.english_name).join(" • "),
+    },
+    {
+      label: "Budget",
+      value: formatMoney(movie.budget),
+    },
+    {
+      label: "Revenue",
+      value: formatMoney(movie.revenue),
+    },
+    {
+      label: "Tagline",
+      value: movie.tagline || "Not Available",
+    },
+    {
+      label:
+        movie.production_companies.length > 1
+          ? "Production Companies"
+          : "Production Company",
+      value: movie.production_companies.map((c) => c.name).join(" • "),
+    },
+  ];
   return (
     <div className="movie__detail--box box-shadow mt-[24rem] min-w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] min-h-[70vh]">
       <div className="movie__details--header flex justify-between items-center">
@@ -44,6 +92,7 @@ function MovieDetails({ movie, onClose }) {
         </div>
         <div className="movie__details--info ">
           <ul className="movie__details--list  flex flex-col gap-[4.8rem]  justify-self-start">
+            {" "}
             <li className="flex gap-[6rem] items-start">
               <p className="text-[#A8B5DB] text-[1.8rem]">Genres</p>
               <span className="flex gap-[3rem]">
@@ -57,110 +106,9 @@ function MovieDetails({ movie, onClose }) {
                 ))}
               </span>
             </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">Overview</p>
-              <span className="text-[1.6rem] max-w-[50rem] text-left text-white">
-                {movie.overview}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">Release Date</p>
-              <span className="text-[#D6C7FF] text-[1.8rem]">
-                {new Date(movie.release_date).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}{" "}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">
-                {movie.production_countries.length > 1
-                  ? "Countries"
-                  : "Country"}
-              </p>
-              <span className="flex gap-[3rem]">
-                {movie.production_countries.map((country, index) => (
-                  <>
-                    <p className="text-[#D6C7FF] text-[1.8rem]">
-                      {country.name}
-                    </p>
-
-                    {index < movie.production_countries.length - 1 && (
-                      <span className="text-[#A8B5DB] text-[2rem]">•</span>
-                    )}
-                  </>
-                ))}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">
-                {movie.spoken_languages > 1 ? "Languages" : "Language"}
-              </p>
-              <span className="flex gap-[3rem]">
-                {movie.spoken_languages.map((language, index) => (
-                  <>
-                    <p className="text-[#D6C7FF] text-[1.8rem]">
-                      {language.english_name}
-                    </p>
-
-                    {index < movie.spoken_languages.length - 1 && (
-                      <span className="text-[#A8B5DB] text-[2rem]">•</span>
-                    )}
-                  </>
-                ))}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">Budget</p>
-              <span className="text-[#d6c7ff] text-[1.8rem]">
-                {movie.budget > 0
-                  ? `${
-                      movie.budget >= 1_000_000
-                        ? `$${(movie.budget / 1_000_000).toFixed(1)} million`
-                        : `$${(movie.budget / 1_000).toFixed(1)} thousand`
-                    }`
-                  : "Not Available"}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">Revenue</p>
-              <span className="text-[#d6c7ff] text-[1.8rem]">
-                {movie.revenue > 0
-                  ? movie.revenue >= 1_000_000_000
-                    ? `$${(movie.revenue / 1_000_000_000).toFixed(1)} billion`
-                    : movie.revenue >= 1_000_000
-                    ? `$${(movie.revenue / 1_000_000).toFixed(1)} million`
-                    : `$${(movie.revenue / 1_000).toFixed(1)} thousand`
-                  : "Not Available"}
-              </span>
-            </li>
-            <li className="flex gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">Tagline</p>
-              <span className="text-[#d6c7ff] text-[1.8rem]">
-                {movie.tagline ? movie.tagline : "Not Available"}
-              </span>
-            </li>
-            <li className="flex flex-wrap gap-[6rem] items-start">
-              <p className="text-[#A8B5DB] text-[1.8rem]">
-                {movie.production_companies.length > 1
-                  ? "Production Comapnies"
-                  : "Production Company"}
-              </p>
-              <span className="flex flex-wrap gap-[3rem] max-w-[50rem]">
-                {movie.production_companies.map((comapny, index) => (
-                  <>
-                    <p className="text-[#D6C7FF] text-[1.8rem]">
-                      {comapny.name}
-                    </p>
-
-                    {index < movie.production_companies.length - 1 && (
-                      <span className="text-[#A8B5DB] text-[2rem]">•</span>
-                    )}
-                  </>
-                ))}
-              </span>
-            </li>
+            {movieDetails.map(({ label, value }, index) => (
+              <MovieDetail title={label} key={index} content={value} />
+            ))}
           </ul>
         </div>
       </div>
@@ -173,5 +121,18 @@ function MovieDetails({ movie, onClose }) {
     </div>
   );
 }
-
+function MovieDetail({ title, content }) {
+  return (
+    <li className="flex gap-[6rem] items-start">
+      <p className="text-[#A8B5DB] text-[1.8rem]">{title}</p>
+      <span
+        className={`text-[1.6rem] max-w-[50rem] text-left ${
+          title === "Overview" ? "text-white" : "text-[#D6C7FF]"
+        }`}
+      >
+        {content}
+      </span>
+    </li>
+  );
+}
 export default MovieDetails;
