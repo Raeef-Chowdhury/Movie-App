@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
-
 function MovieDetails({ movie, onClose }) {
-  console.log(movie);
   const formatDate = (date) =>
     new Date(date).toLocaleDateString("en-US", {
       month: "long",
@@ -15,6 +13,7 @@ function MovieDetails({ movie, onClose }) {
     if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)} million`;
     return `$${(n / 1_000).toFixed(1)} thousand`;
   };
+
   const movieDetails = [
     {
       label: "Overview",
@@ -52,8 +51,9 @@ function MovieDetails({ movie, onClose }) {
       value: movie.production_companies.map((c) => c.name).join(" • "),
     },
   ];
+
   return (
-    <div className="movie__detail--box box-shadow mt-[24rem] min-w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] min-h-[70vh]">
+    <div className="movie__detail--box box-shadow mt-[24rem] min-w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] min-h-[70vh] tranform-x-[50%]">
       <div className="movie__details--header flex justify-between items-center">
         <h1 className="movie__title text-white text-[4.2rem]">{movie.title}</h1>
         <p className="movie__rating text-white text-[2.4rem] flex items-center gap-[0.6rem] font-black rounded-2xl px-[1.2rem] py-[1.8rem] bg-[#221F3D]">

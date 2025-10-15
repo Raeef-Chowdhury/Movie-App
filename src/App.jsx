@@ -1,4 +1,5 @@
 import "./App.css";
+import { motion } from "motion/react";
 import Header from "./Components/Header";
 import Search from "./Components/Search";
 import MovieCard from "./Components/MovieCard";
@@ -11,7 +12,7 @@ import { useState, useEffect } from "react";
 //TODO: Add trending front screen
 //FIXME: Add error handling for everything
 //TODO: ADD ANIMATIONS
-//TODO: Refactor Movie details code
+// TODO:RESPONSVIENESS
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -83,13 +84,22 @@ function App() {
   return (
     <>
       <main className="flex justify-center items-start ">
-        <div className="pattern" />
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pattern"
+        />
         <div className="wrapper  flex flex-col justify-center items-center gap-[4rem] mt-[4rem]">
           <Header />
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <section className="movies__list">
             {selectedMovie ? (
-              <MovieDetails movie={selectedMovie} onClose={handleCloseModal} />
+              <MovieDetails
+                movie={selectedMovie}
+                onClose={handleCloseModal}
+                key={selectedMovie.id}
+              />
             ) : (
               <>
                 {isLoading ? (

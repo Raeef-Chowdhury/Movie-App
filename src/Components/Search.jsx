@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
+import { motion } from "motion/react";
 function Search({ searchTerm, setSearchTerm }) {
   return (
     <>
-      <div className="searchbar-container max-w-7xl w-full  bg-light-100/5 px-[6rem]  py-[6rem] scale-110 rounded-lg mx-auto mt-6 ">
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="searchbar-container max-w-7xl w-full  bg-light-100/5 px-[6rem]  py-[6rem] scale-110 rounded-lg mx-auto mt-6 "
+      >
         <div className="flex items-center gap-[1.2rem] searchbar-box">
           <img
             src="../../public/Search.png"
@@ -18,7 +24,7 @@ function Search({ searchTerm, setSearchTerm }) {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
