@@ -10,8 +10,6 @@ import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 // API ENDPOINT = https://api.themoviedb.org/3/search/movie
 //TODO: Add trending front screen
-//FIXME: Add error handling for everything
-//TODO: ADD ANIMATIONS
 // TODO:RESPONSVIENESS
 
 function App() {
@@ -21,6 +19,7 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [errMsg, setErrMsg] = useState(false);
   useDebounce(
     () => {
       setDebouncedSearch(searchTerm);
@@ -65,12 +64,15 @@ function App() {
         throw new Error("cant fetch movies");
       }
       const data = await response.json();
-      console.log(data);
       if (data.Response === "False") {
         setMovieList([]);
         return;
       }
+
       setMovieList(data.results);
+      if (data.total_results === 0) {
+        setErrMsg(true);
+      }
     } catch (err) {
       console.error(`${err}`);
     } finally {
@@ -93,6 +95,11 @@ function App() {
         <div className="wrapper  flex flex-col justify-center items-center gap-[4rem] mt-[4rem]">
           <Header />
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          {errMsg ? (
+            <p className="text-red-500 text-[3rem] mt-[4rem] max-w-7xl">
+              No movies found, please search for a different movie
+            </p>
+          ) : null}
           <section className="movies__list">
             {selectedMovie ? (
               <MovieDetails
