@@ -79,6 +79,9 @@ body {
   align-items: center;
   animation: comeIn 600ms;
 }
+.trendinglist {
+  animation: comeIn 600ms;
+}
 .moviecard-text {
   padding: 0 1.2rem;
 }
@@ -124,4 +127,13 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+.movie-cat {
+  margin-top: 12rem;
+  animation: comeIn 600ms;
+}
+.trending-num {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  margin-right: -1.2rem;
 }

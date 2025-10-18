@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import Search from "./Components/Search";
 import MovieCard from "./Components/MovieCard";
 import MovieDetails from "./Components/MovieDetails";
+import TrendingCard from "./Components/TrendingCard.jsx";
 import { useDebounce } from "react-use";
 
 import { useState, useEffect } from "react";
@@ -15,21 +16,24 @@ import { useState, useEffect } from "react";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movieList, setMovieList] = useState([]);
+  const [trending, setTrending] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // eslint-disable-next-line no-unused-vars
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [errMsg, setErrMsg] = useState(false);
+
   useDebounce(
     () => {
       setDebouncedSearch(searchTerm);
     },
-    500, // delay (ms)dw
-    [searchTerm] // dependencies
+    500,
+    [searchTerm]
   );
+
   const API_URL = "https://api.themoviedb.org/3";
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
   const API_MOVIE_KEY = import.meta.env.VITE_TMDB_API_KEY_MOVIE;
+
   const API_OPTIONS = {
     method: "GET",
     headers: {
@@ -37,6 +41,27 @@ function App() {
       Authorization: `Bearer ${API_KEY}`,
     },
   };
+
+  useEffect(() => {
+    fetchTrendingMovies();
+  }, []);
+
+  const fetchTrendingMovies = async () => {
+    try {
+      const response = await fetch(
+        `${API_URL}/trending/movie/week`,
+        API_OPTIONS
+      );
+      if (!response.ok) {
+        throw new Error("Can't fetch trending movies");
+      }
+      const data = await response.json();
+      setTrending(data.results.slice(0, 6));
+    } catch (err) {
+      console.error(`Error fetching trending: ${err}`);
+    }
+  };
+
   const handleMovieSelect = async (movie) => {
     const movieID = movie.id;
 
@@ -51,14 +76,16 @@ function App() {
       console.error("Error fetching movie details:", error);
     }
   };
+
   const handleCloseModal = () => {
     setSelectedMovie(null);
   };
+
   const fetchMovies = async (query) => {
     try {
       const endpoint = query
         ? `${API_URL}/search/movie?query=${encodeURI(query)}`
-        : `${API_URL}/discover/movie?sort_by=populairty.desc`;
+        : `${API_URL}/discover/movie?sort_by=popularity.desc`;
       const response = await fetch(endpoint, API_OPTIONS);
       if (!response.ok) {
         throw new Error("cant fetch movies");
@@ -70,8 +97,11 @@ function App() {
       }
 
       setMovieList(data.results);
+
       if (data.total_results === 0) {
         setErrMsg(true);
+      } else if (data.total_results > 0) {
+        setErrMsg(false);
       }
     } catch (err) {
       console.error(`${err}`);
@@ -79,6 +109,7 @@ function App() {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     fetchMovies(debouncedSearch);
   }, [debouncedSearch]);
@@ -92,15 +123,17 @@ function App() {
           transition={{ duration: 0.6 }}
           className="pattern"
         />
-        <div className="wrapper  flex flex-col justify-center items-center gap-[4rem] mt-[4rem]">
+        <div className="wrapper flex flex-col justify-center items-center gap-[4rem] mt-[4rem]">
           <Header />
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
           {errMsg ? (
             <p className="text-red-500 text-[3rem] mt-[4rem] max-w-7xl">
               No movies found, please search for a different movie
             </p>
           ) : null}
-          <section className="movies__list">
+
+          <section className="movies__list w-full">
             {selectedMovie ? (
               <MovieDetails
                 movie={selectedMovie}
@@ -112,15 +145,45 @@ function App() {
                 {isLoading ? (
                   <p>Loading...</p>
                 ) : (
-                  <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem] max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1  justify-items-center mt-[4.8rem] movielist">
-                    {movieList.map((movie) => (
-                      <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                        onClick={() => handleMovieSelect(movie)}
-                      />
-                    ))}
-                  </ul>
+                  <>
+                    {debouncedSearch === "" && trending.length > 0 && (
+                      <div className="mb-[4rem] flex flex-col gap-[6rem]">
+                        <h1 className="text-left movie-cat text-[4.2rem] mb-[2.4rem]">
+                          Trending Now
+                        </h1>
+                        <ul className="grid trendinglist gap-[9.6rem] grid-cols-6  max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2">
+                          {trending.map((movie, index) => (
+                            // eslint-disable-next-line react/jsx-key
+                            <TrendingCard
+                              movie={movie}
+                              index={index}
+                              id={movie.id}
+                              onClick={() => handleMovieSelect(movie)}
+                            />
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <h1
+                      className={`text-left movie-cat text-[4.2rem] ${
+                        errMsg ? "hidden" : ""
+                      }`}
+                    >
+                      {debouncedSearch === ""
+                        ? "Popular Movies"
+                        : `Search Results for "${debouncedSearch}"`}
+                    </h1>
+                    <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem]  justify-items-center mt-[4.8rem] movielist">
+                      {movieList.map((movie) => (
+                        <MovieCard
+                          key={movie.id}
+                          movie={movie}
+                          onClick={() => handleMovieSelect(movie)}
+                        />
+                      ))}
+                    </ul>
+                  </>
                 )}
               </>
             )}
