@@ -66,8 +66,8 @@ function MovieDetails({ movie, onClose }) {
 
   return (
     <>
-      <div className="movie__detail--box box-shadow mt-[24rem] max-2xl:w-[960px] max-md:w-[480px]  max-lg:w-[600px] w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] [70vh] transform -translate-x-[-1/2]">
-        <div className="movie__details--header flex  justify-between items-center">
+      <div className="movie__detail--box box-shadow mt-[24rem] max-sm:w-[400px] mx-auto max-w-[1600px] bg-[#0F0D23] rounded-3xl px-[2rem] py-[6rem] [70vh] max-sm:translate-x-[10%]">
+        <div className="movie__details--header flex max-md:flex-col max-md:gap-[2.4rem] justify-between items-center">
           <h1 className="movie__title text-white flex flex-wrap text-[4.2rem]">
             {movie.title}
           </h1>
@@ -88,7 +88,7 @@ function MovieDetails({ movie, onClose }) {
             )}
           </p>
         </div>
-        <div className="movie__extra--details flex justify-start max-lg:justify-center items-center gap-[1.2rem] text-[1.8rem]">
+        <div className="movie__extra--details flex justify-start mt-[3.6rem] max-lg:justify-center items-center gap-[1.2rem] text-[1.8rem]">
           <p className="movie__release--date text-[#A8B5DB]">
             {movie.release_date.split("-")[0]}
           </p>
@@ -110,12 +110,14 @@ function MovieDetails({ movie, onClose }) {
           </div>
           <div className="movie__details--info max-2xl:text-center">
             <ul className="movie__details--list flex flex-col gap-[4.8rem] ">
-              <li className="flex gap-[6rem] items-start max-xl:justify-center">
-                <p className="text-[#A8B5DB] text-[1.8rem]">Genres</p>
+              <li className="flex  items-start max-xl:justify-center max-sm:max-w-xl gap-[6rem]">
+                <p className="text-[#A8B5DB] text-[1.8rem] max-sm:hidden">
+                  Genres
+                </p>
                 <span className="flex gap-[3rem]">
                   {movie.genres.map((genre) => (
                     <p
-                      className="text-[2rem] movie-genre bg-[#221F3D] uppercase rounded-2xl px-[1.2rem] py-[1.8rem] text-white"
+                      className="text-[1.6rem] movie-genre bg-[#221F3D] uppercase rounded-2xl px-[1.2rem] py-[1.8rem]  text-white"
                       key={genre.name}
                     >
                       {genre.name}
@@ -141,7 +143,7 @@ function MovieDetails({ movie, onClose }) {
 }
 function MovieDetail({ title, content }) {
   return (
-    <li className="flex gap-[6rem] items-start max-xl:justify-center">
+    <li className="flex gap-[6rem] items-start max-xl:justify-center max-sm:max-w-xl">
       <p className="text-[#A8B5DB] text-[1.8rem]">{title}</p>
       <span
         className={`text-[1.6rem] max-w-[50rem] text-left ${
