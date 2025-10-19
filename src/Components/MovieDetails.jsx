@@ -66,9 +66,9 @@ function MovieDetails({ movie, onClose }) {
 
   return (
     <>
-      <div className="movie__detail--box box-shadow mt-[24rem] min-w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] min-h-[70vh] transform -translate-x-[-1/2]">
-        <div className="movie__details--header flex justify-between items-center">
-          <h1 className="movie__title text-white text-[4.2rem]">
+      <div className="movie__detail--box box-shadow mt-[24rem] max-2xl:w-[960px] max-md:w-[480px]  max-lg:w-[600px] w-[1600px] bg-[#0F0D23] rounded-3xl px-[6rem] py-[6rem] [70vh] transform -translate-x-[-1/2]">
+        <div className="movie__details--header flex  justify-between items-center">
+          <h1 className="movie__title text-white flex flex-wrap text-[4.2rem]">
             {movie.title}
           </h1>
           <p className="movie__rating text-white text-[2.4rem] flex items-center gap-[0.6rem] font-black rounded-2xl px-[1.2rem] py-[1.8rem] bg-[#221F3D]">
@@ -78,14 +78,17 @@ function MovieDetails({ movie, onClose }) {
             ) : (
               <>
                 {movie.vote_average.toFixed(1)}{" "}
-                <span className="text-[#A8B5DB] font-medium span--te">
-                  /10 ({movie.vote_count.toFixed(0)}👤)
+                <span className={`text-[#A8B5DB] font-medium span--te `}>
+                  /10
+                  <span className="max-lg:hidden ml-0.5">
+                    ({movie.vote_count.toFixed(0)}👤 )
+                  </span>
                 </span>
               </>
             )}
           </p>
         </div>
-        <div className="movie__extra--details flex justify-start items-center gap-[1.2rem] text-[1.8rem]">
+        <div className="movie__extra--details flex justify-start max-lg:justify-center items-center gap-[1.2rem] text-[1.8rem]">
           <p className="movie__release--date text-[#A8B5DB]">
             {movie.release_date.split("-")[0]}
           </p>
@@ -97,7 +100,7 @@ function MovieDetails({ movie, onClose }) {
           <span className="text-[#a8b5d8] text-[1.8rem]">•</span>
           <p className="movie__language text-[#A8B5DB]">{movie.status}</p>
         </div>
-        <div className="movie__details--main flex justify-center gap-[12rem] items-start">
+        <div className="movie__details--main max-2xl:flex-col max-2xl:items-center flex justify-center gap-[12rem] items-start">
           <div className="movie__details--img">
             <img
               className="w-[50rem] h-[70rem] object-cover rounded-lg text-white text-xl"
@@ -105,9 +108,9 @@ function MovieDetails({ movie, onClose }) {
               alt={movie.title}
             />
           </div>
-          <div className="movie__details--info">
-            <ul className="movie__details--list flex flex-col gap-[4.8rem] justify-self-start">
-              <li className="flex gap-[6rem] items-start">
+          <div className="movie__details--info max-2xl:text-center">
+            <ul className="movie__details--list flex flex-col gap-[4.8rem] ">
+              <li className="flex gap-[6rem] items-start max-xl:justify-center">
                 <p className="text-[#A8B5DB] text-[1.8rem]">Genres</p>
                 <span className="flex gap-[3rem]">
                   {movie.genres.map((genre) => (
@@ -138,7 +141,7 @@ function MovieDetails({ movie, onClose }) {
 }
 function MovieDetail({ title, content }) {
   return (
-    <li className="flex gap-[6rem] items-start">
+    <li className="flex gap-[6rem] items-start max-xl:justify-center">
       <p className="text-[#A8B5DB] text-[1.8rem]">{title}</p>
       <span
         className={`text-[1.6rem] max-w-[50rem] text-left ${

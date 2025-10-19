@@ -12,6 +12,16 @@
 html {
   font-size: 62.5%;
 }
+@media screen and (max-width: 80rem) {
+  html {
+    font-size: 55%;
+  }
+}
+@media screen and (max-width: 64rem) {
+  html {
+    font-size: 50%;
+  }
+}
 @layer base {
   body {
     font-family: "Roboto", sans-serif;

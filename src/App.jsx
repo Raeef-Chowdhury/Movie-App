@@ -10,8 +10,8 @@ import { useDebounce } from "react-use";
 import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 // API ENDPOINT = https://api.themoviedb.org/3/search/movie
-//TODO: Add trending front screen
 // TODO:RESPONSVIENESS
+// TODO:Multiple Pages maybe?
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -116,7 +116,7 @@ function App() {
 
   return (
     <>
-      <main className="flex justify-center items-start ">
+      <main className="flex justify-center items-start  ">
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,10 +148,10 @@ function App() {
                   <>
                     {debouncedSearch === "" && trending.length > 0 && (
                       <div className="mb-[4rem] flex flex-col gap-[6rem]">
-                        <h1 className="text-left movie-cat text-[4.2rem] mb-[2.4rem]">
+                        <h1 className="text-left movie-cat text-[4.2rem] max-lg:text-center mb-[2.4rem]">
                           Trending Now
                         </h1>
-                        <ul className="grid trendinglist gap-[9.6rem] grid-cols-6  max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2">
+                        <ul className="grid trendinglist gap-[9.6rem] grid-cols-6 max-xl:grid-cols-4 justify-center items-center  max-lg:grid-cols-3  max-sm:grid-cols-2">
                           {trending.map((movie, index) => (
                             // eslint-disable-next-line react/jsx-key
                             <TrendingCard
@@ -166,7 +166,7 @@ function App() {
                     )}
 
                     <h1
-                      className={`text-left movie-cat text-[4.2rem] ${
+                      className={`text-left movie-cat text-[4.2rem] max-lg:text-center ${
                         errMsg ? "hidden" : ""
                       }`}
                     >
@@ -174,7 +174,7 @@ function App() {
                         ? "Popular Movies"
                         : `Search Results for "${debouncedSearch}"`}
                     </h1>
-                    <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem]  justify-items-center mt-[4.8rem] movielist">
+                    <ul className="grid grid-cols-4 grid-rows-3 gap-[6rem] max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1  justify-items-center mt-[4.8rem] movielist">
                       {movieList.map((movie) => (
                         <MovieCard
                           key={movie.id}
